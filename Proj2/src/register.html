@@ -14,21 +14,21 @@
 
         <form id="registerForm" action="/src/register.html" method="post" class="flex flex-col gap-4">
             
-            <input type="text" placeholder="a" 
+            <input id="userInput" type="text" placeholder="a" 
                 class="w-full p-3 border border-gray-200 rounded-sm focus:outline-none focus:border-blue-400 bg-gray-50/50">
 
-            <input type="email" placeholder="a@b.com" 
+            <input id="mailInput" type="email" placeholder="a@b.com" 
                 class="w-full p-3 border border-gray-200 rounded-sm focus:outline-none focus:border-blue-400 bg-gray-50/50">
 
-            <input type="password" placeholder="..." 
+            <input id="passInput" type="password" placeholder="password" 
                 class="w-full p-3 border border-gray-200 rounded-sm focus:outline-none focus:border-blue-400 bg-gray-50/50">
 
-            <input type="password" placeholder="..." 
+            <input id="confirmInput" type="password" placeholder="confirm password" 
                 class="w-full p-3 border border-gray-200 rounded-sm focus:outline-none focus:border-blue-400 bg-gray-50/50">
 
             <div class="text-right">
                 <label class="block text-sm text-gray-600 mb-1">Date of Birth</label>
-                <input type="date" value="2025-03-18"
+                <input id="dateInput" type="date" value="2025-03-18"
                     class="w-full p-3 border border-gray-200 rounded-sm focus:outline-none focus:border-blue-400 bg-gray-50/50 text-gray-500">
             </div>
 
@@ -39,7 +39,7 @@
         </form>
         <div id="registerMessage" class="mt-2 text-red-500 text-center text-sm"></div>
         <div class="text-center mt-6">
-            <a href="#" class="text-blue-400 text-sm hover:underline">Already have an account? Login</a>
+            <a href="login.html" class="text-blue-400 text-sm hover:underline">Already have an account? Login</a>
         </div>
 
     </div>

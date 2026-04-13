@@ -9,14 +9,20 @@ loginForm.addEventListener('submit', function(event) {
     let user =  users.find(u=>u.username === usernameOrEmail || u.email === usernameOrEmail);
     let nameOrEmail = 'test';
     let pass = 'password';
+    let loggedIn = JSON.parse(localStorage.getItem('Logged')) || [];    
     if(user != undefined){
         nameOrEmail = user.username;
         pass = user.password;
     }
     if (usernameOrEmail === nameOrEmail && password === pass) {
         loginMessage.textContent = 'Login successful!';
+        loggedIn.push({ usernameOrEmail});
+        localStorage.setItem('Logged', JSON.stringify(loggedIn));
         loginMessage.classList.remove('text-red-500');
         loginMessage.classList.add('text-green-500');
+        if (user.isAdmin) {
+            window.location.href = 'userManagement.html';
+        }
     } else {
         loginMessage.textContent = 'Invalid username/email or password.';
         loginMessage.classList.remove('text-green-500');

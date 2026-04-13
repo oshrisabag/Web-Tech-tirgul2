@@ -4,15 +4,19 @@ const registerMessage = document.getElementById('registerMessage');
 
 registerForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-
     const username = document.getElementById('userInput').value;
     const email = document.getElementById('mailInput').value;
     const password = document.getElementById('passInput').value;
     const confirmPassword = document.getElementById('confirmInput').value;
     const dob = document.getElementById('dateInput').value;
-
+    let isAdmin = false;
     registerMessage.textContent = "";
-
+    if (username === "" || email === "" || password === "" || confirmPassword === "" || dob === "") {
+        registerMessage.textContent = "Please fill in all fields.";
+        registerMessage.classList.remove("text-green-500");
+        registerMessage.classList.add("text-red-500");
+        return;
+    }
     if (password !== confirmPassword) {
         registerMessage.textContent = "Passwords do not match.";
         registerMessage.classList.remove("text-green-500");
@@ -22,15 +26,15 @@ registerForm.addEventListener('submit', async (event) => {
 
     try {
         let users = JSON.parse(localStorage.getItem('users')) || [];
+        
         if (users.some(user => user.username === username || user.email === email)) {
             registerMessage.textContent = "Username or email already exists.";
             registerMessage.classList.remove("text-green-500");
             registerMessage.classList.add("text-red-500");
             return;
         }
-
-        users.push({ username, email, password, dob });
-
+        if (users.length === 0) isAdmin = true;
+        users.push({ username, email, password, dob, isAdmin });
         localStorage.setItem('users', JSON.stringify(users));
 
         registerMessage.textContent = "Registration successful! (Data stored in local storage)";
